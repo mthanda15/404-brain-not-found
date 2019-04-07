@@ -1,0 +1,15 @@
+ {
+        "name": "mysql",
+        "extension": "sql",
+	"compile" : {
+            "unzip": "",
+	          "move":"",
+            "compile": "mysql -u root -psbonina1489579 -e 'source query.sql'"
+	},
+	"compile_tests" : {
+	    "compile": "WitsTest.class"
+	},
+        "commands": {
+            "run": "java -Djava.security.manager WitsTest"
+        }
+      }
