@@ -14,5 +14,5 @@ dist: trusty
 
 sudo: required
 
-before_script:
+script:
 - php lib.php
