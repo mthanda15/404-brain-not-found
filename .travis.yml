@@ -19,4 +19,4 @@ dist: trusty
 sudo: required
 
 before_script:
-- mysql -e 'create database Database;'
+- php lib.php
