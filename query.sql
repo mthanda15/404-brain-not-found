@@ -1,1 +1,1 @@
-create database dbb1;
+show databases;
