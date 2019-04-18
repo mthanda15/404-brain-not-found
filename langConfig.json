@@ -1,15 +1,19 @@
  {
         "name": "mysql",
         "extension": "sql",
-	"compile" : {
-            "unzip": "",
-	          "move":"",
-            "compile": "mysql -e 'source query.sql'"
-	},
-	"compile_tests" : {
-	    "compile": "WitsTest.class"
-	},
-        "commands": {
-            "run": "java "
-        }
+        "user": {
+          "createStuDatabase":"mysql -e 'create database Name'",
+          "runQuery":"-----------"
+        },
+        "exeminer": {
+          "createLecDatabase":"--------------",
+          "CommandStatementType":"------------",
+          "runQuerySeen":"..........",
+          "runQueryUnseen":"........"
+        },
+
+  	"compile_tests" : {
+  	    "compile": "php WitsMysqlTest"
+  	}
+
       }
