@@ -10,6 +10,6 @@
 	    "compile": "WitsTest.class"
 	},
         "commands": {
-            "run": "java -Djava.security.manager WitsTest"
+            "run": "java "
         }
       }
