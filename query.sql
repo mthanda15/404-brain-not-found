@@ -1,1 +1,1 @@
-show databases;
+Create database mydb;
