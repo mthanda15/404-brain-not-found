@@ -1,0 +1,16 @@
+{ "2": {
+        "name": "SQl",
+        "extension": "zip",
+        "compile" :{
+            "unzip": "unzip ~sourcefile~",
+            "movesource":"mv src/* .",
+            "compile": " mysqladmin -u "
+        },
+        "compile_tests" : {
+            "compile" : "./Program.class"
+        },
+        "commands": {
+            "run": "java -Djava.security.manager Program"
+        }
+    },
+}
