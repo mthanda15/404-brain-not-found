@@ -184,12 +184,10 @@
 
 "16": {
 	
-        "name": "mysql",
+        "name": "SQL",
         "extension": "sql",
 	"compile" : {
-            "unzip": "",
-	          "move":"",
-            "compile": "mysql -u root -pstudent -e 'source query.sql'"
+            "compile": "mysql -u root -pstudent -e '~sourcefile~'"
 	},
 	"compile_tests" : {
 	    "compile": "WitsTest.class"
