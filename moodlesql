@@ -1,0 +1,17 @@
+"16": {
+	
+        "name": "SQL",
+        "extension": "sql",
+	"compile" : {
+	    "compile":: "mysql -u root -pstudent -e 'create database neww'"
+            "compile": "mysql -u root -pstudent -e '~sourcefile~' neww >out.txt"
+	},
+	"compile_tests" : {
+	    "compile": "WitsTest.class"
+	},
+        "commands": {
+            "run": "java -Djava.security.manager WitsTest"
+        }
+
+
+}, 
