@@ -1,10 +1,8 @@
 { "2": {
         "name": "SQl",
-        "extension": "zip",
+        "extension": "sql",
         "compile" :{
-            "unzip": "unzip ~sourcefile~",
-            "movesource":"mv src/* .",
-            "compile": " mysqladmin -u "
+           "compile": " mysqladmin -u "
         },
         "compile_tests" : {
             "compile" : "./Program.class"
