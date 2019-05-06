@@ -1,0 +1,2 @@
+test_cases:
+        - {points: 1,type:create, in: in1.txt, out: out1.txt, feedback: this is good}
