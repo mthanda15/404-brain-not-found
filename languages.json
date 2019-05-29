@@ -198,13 +198,7 @@
 	    "sourceunseen": "mysql -u root -pstudent  ~userid~_~firstname~_~lastname~ < ~sourcefile~"
 	    "sourceseen": "mysql -u root -pstudent  ~userid~_~firstname~ < ~sourcefile~"	 
 	    	 
-        },
-        
-        "compile" :{
-            
-        },
-        
-        
+        }, 
         "compile" :{
             "compile": "mysql -u root -pstudent -e 'show tables' ~userid~_~firstname~_~lastname~ >out2.txt"
         },
@@ -214,7 +208,7 @@
             "compile" : "outresults.txt"
         },
         "commands": {
-            "run": "mysql -u root -pstudent ~userid~_~firstname~_~lastname~  ~input_noex~.txt"
+            "run": "mysql -u root -pstudent ~userid~_~firstname~_~lastname~  ~sourcefile~"
        }
 
 
