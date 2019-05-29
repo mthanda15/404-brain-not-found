@@ -194,11 +194,13 @@
             "unseendatabase": "mysql -u root -pstudent -e 'create database ~userid~_~firstname~_~lastname~'"
 	    "seendatabase": "mysql -u root -pstudent -e 'create database ~userid~_~firstname~'"	 
             "runinputfileymlunseen": "mysql -u root -pstudent ~userid~_~firstname~_~lastname~  < ini1.txt"
-	    "runinputfileymlseen": "mysql -u root -pstudent ~userid~_~firstname~  < ini2.txt"		 
+	    "runinputfileymlseen": "mysql -u root -pstudent ~userid~_~firstname~  < ini2.txt"	
+	    "sourceunseen": "mysql -u root -pstudent  ~userid~_~firstname~_~lastname~ < ~sourcefile~"
+	    	 
         },
         
         "compile" :{
-            "compile": "mysql -u root -pstudent  ~userid~_~firstname~_~lastname~ < ~sourcefile~  >out1.txt"
+            
         },
         
         
