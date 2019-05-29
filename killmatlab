@@ -1,0 +1,5 @@
+sudo killall -9 MATLAB
+sudo rm /tmp/matlab.out
+sudo rm /tmp/matlab.err
+sudo rm /tmp/matlab.nohup
+sudo rm /tmp/mlpipe

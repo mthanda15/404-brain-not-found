@@ -1,0 +1,94 @@
+<?php
+/**
+ * @file doc.dox
+ * Doxygen File Information
+ *
+ *
+ * \mainpage Moodle Marker
+ *
+ * \section intro_sec Introduction
+ *
+ * These pages document the code of the online moodle marker.
+ * lib.php and mark.php contain the server side marking code.
+ * requester.php shows sample client code.
+ *
+ * \section install_sec Installation
+ * Simply copy the php files into the web server directory.
+ * Exit settings::$temp in config.php to point to the correct temporary location
+ * for files.
+ *
+ * \section language_desc Language descriptions
+ * Language descriptions are found in languages.json.
+ * New languages are specified by adding JSON objects to this file, which contain the commands necessary to compile, run and test the code.
+ * 
+ * \section marking Marking
+ * The general marking workflow is as follows:
+ * <OL>
+ * <li>The submission and relevant metadata is sent to the marker</li>
+ * <li>The marker saves the submission data to a source file</li>
+ * <li>The marker then runs the relevant commands from languages.json file</li>
+ * <li>The last command should be called "run." This command is the only one to which the time limit applies.</li>
+ * <li>The "run" command is executed. The stdout from the program is collected and compared to the ideal output.</li>
+ * <li>If the program output is the same as the ideal output, then the submission is correct. 
+ * If there are errors involving whitespace and/or capitalisation, a presentation error is returned.</li>
+ * <li>If and of the commands before "run" fail, then the marker returns a compilation error. After each command, the marker checks for the existance of the file specified in the "test" fields of the json object. This is explained in detail in the documentation for languages.json</li>
+ * </OL>
+ *
+ * \section codes Return Codes
+ * <table>
+ * <tr><th>Code</th><th>Description</th></tr>
+ * <tr><td>1 </td><td>Correct Submission</td></tr>
+ * <tr><td>3 </td><td>Compilation Error</td></tr>
+ * <tr><td>7 </td><td>Presentation Error - Compile Succeeded, whitespace or captialisation error.</td></tr>
+ * <tr><td>10</td><td>Time limie exceeded when performing the final run.</td></tr>
+ * <tr><td>11</td><td>Incorrect output, Compile Succeeded</td></tr>
+ * </table>
+ *
+ * \section client Client Communication
+ * The client should send all information through a JSON object with the following keys:
+ * <table>
+ * <tr><th>Key</th><th>Description</th></tr>
+ * <tr><td>language</td><td>Integer language ID found in languages.json</td></tr>
+ * <tr><td>source</td><td>Base64_encoded submission. This can be either any submission - binary or text.</td></tr>
+ * <tr><td>input</td><td>Input to be given to the program through STDIN and/or the 'input' file.</td></tr>
+ * <tr><td>output</td><td>The expected output.</td></tr>
+ * <tr><td>timelimit</td><td>The number of seconds for which the "run" command may execute.</td></tr>
+ * </table>
+ */
+/**
+ * @file languages.json
+ * JSON file containing Language Descriptions.
+ *
+ * Each language description should be of the form:<br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;"5": {<br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "name": "C", <br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "extension": "c", <br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "commands": { <br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  "compile": "gcc -o ~sourcefile_noex~.out ~sourcefile~ -lm", <br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; "run": "./~sourcefile_noex~.out" <br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  }, <br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "tests": { <br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  "compile": "~sourcefile_noex~.out" <br />
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  }<br />
+ * &nbsp;&nbsp;&nbsp;&nbsp; },<br/><br />
+ *
+ * The JSON code above specifies a language with ID 5 as C. The file extension appended to downloaded source files is ".c" 
+ * There are 2 commands - compile and run - and 1 test. Commands are run in the order they appear in the JSON file.
+ * First the compile command is run. Once this is done, the system checks for a test with the same name.
+ * As there is such a test, the marker checks that the specified file exists. If it does not, then the compilation must have failed.
+ * In this case a compile error is then returned.
+ * If the file is found, then the system runs the next command - "run" in this case.
+ * The "run" command is always enforces the time limit, the input is sent
+ * to stdin and the stdout is checked with the output supplied with the submission.
+ *
+ * \section replace Keywords
+ * The following keywords are replaced in the language commands. Suppose that the submission code is saved in "/tmp/marker/source.c"
+ * <table>
+ * <tr><th>Keyword</th><th>Description</th></tr>
+ * <tr><td>~sourcefile~     </td><td>The name of the submission file - source.c</td></tr>
+ * <tr><td>~sourcefile_noex~</td><td>The name of the submission file without the extension - source</td></tr>
+ * <tr><td>~input~</td><td>The input sent to stdin is also saved to a file in the relevant path. This filename is supplied. This is usually just ./input</td></tr>
+ * </table>
+ * Note that none of these values include the path. Before running any command, the marker changes its working directory to the same one where the files are stored - for example, "/tmp/marker/" in the example above.
+ */
+?>

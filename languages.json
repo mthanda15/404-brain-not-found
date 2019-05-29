@@ -1,0 +1,225 @@
+{
+    "1": {
+        "name": "JavaJar",
+        "extension": "jar",
+        "commands": {
+            "run": "java -Djava.security.manager -jar ~sourcefile~"
+        }
+    },
+    "2": {
+        "name": "JavaZip",
+        "extension": "zip",
+	"compile" :{
+            "unzip": "unzip ~sourcefile~",
+	    "movesource":"mv src/* .",
+            "compile": "javac -encoding UTF-8 *.java"
+	},
+	"compile_tests" : {
+	    "compile" : "./Program.class"
+	},
+        "commands": {
+            "run": "java -Djava.security.manager Program"
+        }
+    },
+    "3": {
+        "name": "Jython",
+        "extension": "py",
+        "commands": {
+            "run": "jython -Djava.security.manager ~sourcefile~"
+        }
+    },
+    "4": {
+        "name": "Python",
+        "extension": "py",
+	"compile" : {},
+	"compile_tests" : {},
+        "commands": {
+            "run": "python3 ~sourcefile~"
+        }
+    },
+    "5": {
+        "name": "C",
+        "extension": "c",
+        "commands": {
+            "compile": "gcc -Wfatal-errors -o ~sourcefile_noex~.out ~sourcefile~ -lm",
+            "run": "./~sourcefile_noex~.out"
+        },
+        "tests": {
+            "compile": "~sourcefile_noex~.out"
+        }
+    },
+    "6": {
+        "name": "C++98",
+        "extension": "cpp",
+        "commands": {
+            "compile": "g++ -Wfatal-errors -o ~sourcefile_noex~.out ~sourcefile~ -lm",
+            "run": "./~sourcefile_noex~.out"
+        },
+        "tests": {
+            "compile": "~sourcefile_noex~.out"
+        }
+    },
+    "7": {
+        "name": "Octave",
+        "extension": "m",
+        "commands": {
+            "run": "octave ~input~ ~sourcefile~"
+        }
+    },
+    "8": {
+        "name": "JavaZip_Custom",
+        "extension": "zip",
+	"compile" : {
+            "unzip": "unzip ~sourcefile~",
+	    "move":"mv src/* .",
+            "compile": "javac WitsTest.java"
+	},
+	"compile_tests" : {
+	    "compile": "WitsTest.class"
+	},
+        "commands": {
+            "run": "java -Djava.security.manager WitsTest"
+        }
+    },
+"9": {
+        "name": "Make",
+        "extension": "cpp",
+        "commands": {
+            "rm_imain" : "sed -i 's:int\\s*main\\s*(:int old_main(:g' ~sourcefile~",
+            "rm_vmain" : "sed -i 's:void\\s*main\\s*(:void old_main(:g' ~sourcefile~",
+	    "download" : "wget -O files.zip `cat ~input~ | head -1`",
+	    "unzip"    : "unzip files.zip",
+            "compile": "make",
+            "run": "./a.out < ~input~"
+        },
+        "tests": {
+            "download": "files.zip",
+            "compile": "a.out"
+        }
+    },
+"11": {
+        "name": "C++11CustomMain",
+        "extension": "cpp",
+        "compile" : {
+	},
+        "compile_tests" : {
+	},
+        "commands": {
+            "rm_imain" : "sed -i 's:int\\s*main\\s*(:int old_main(:g' ~sourcefile~",
+            "rm_vmain" : "sed -i 's:void\\s*main\\s*(:void old_main(:g' ~sourcefile~",
+            "concat": "cat ~sourcefile~ `echo` ~input~  > combined.cpp",
+            "compile": "g++ -Wfatal-errors -std=c++11 -o combined combined.cpp -lm",
+            "run": "./combined"
+        },
+        "tests": {}
+    },
+"10": {
+        "name": "matlab",
+        "extension": "m",
+        "compile" : {},
+        "compile_tests" : {},
+        "commands": {
+            "makeTester" : "printf \"clear;\\ncd ~path~\\noutfile = sprintf('outfile_~input_noex~.tmp');\\nfh = fopen(outfile, 'w');\\nstr = 'Time limit exceeded';\\nstr = evalc('~input_noex~()');\\nfprintf(fh, '%%s', str);\\nfclose(fh);\\n\" > tester.m",
+            "makeCaller" : "printf \"\\n\\n\" | cat - ~sourcefile~ >> ~input~",
+            "matlabd": "~markers~/matlabd tester.m ~timeout~",
+            "run": "cat outfile_~input_noex~.tmp"
+        }
+    },
+"13": {
+        "name": "matlabzip",
+        "extension": "zip",
+        "compile" : {
+            "unzip": "unzip ~sourcefile~",
+	    "limit": "touch ~markerid~",
+	    "t" : "touch timer-~timeout~"
+	},
+        "compile_tests" : {
+            "limit": "10"
+        },
+        "commands": {
+            "makeTester" : "printf \"clear;\\ncd ~path~\\noutfile = sprintf('outfile_~input_noex~.tmp');\\nfh = fopen(outfile, 'w');\\nstr = 'Time limit exceeded';\\nstr = evalc('~input_noex~()');\\nfprintf(fh, '%%s', str);\\nfclose(fh);\\n\" > tester.m",
+            "matlabd": "~markers~/matlabd tester.m ~timeout~",
+            "run": "cat outfile_~input_noex~.tmp"
+        }
+    },
+"12": {
+        "name": "C++11",
+        "extension": "cpp",
+	"compile" : {
+	    "compile" : "g++ -Wfatal-errors -std=c++11 -o ~sourcefile_noex~.out ~sourcefile~ -lm"
+	},
+	"compile_tests" : {
+	    "compile" : "~sourcefile_noex~.out"
+	},
+        "commands": {
+            "run": "./~sourcefile_noex~.out ~args~"
+        }
+    },
+"14": {
+        "name": "Catch++11",
+        "extension": "cpp",
+	"compile" : {
+            "rm_exit" : "sed -i 's:^\\(.*;\\)*\\s*exit\\s*(.*)::g' ~sourcefile~",
+	    "compile" : "make"
+	},
+	"compile_tests" : {
+	    "compile" : "a.out"
+	},
+        "commands": {
+            "makeTester" : "printf \"./a.out ~args~ >outfile_~input_noex~.txt\\necho \\$? \" > runner.sh",
+            "makeExec"   : "chmod +x ./runner.sh",
+            "run": "./runner.sh",
+	    "display" : "cat outfile_~input_noex~.txt"
+        }
+    },
+"15": {
+        "name": "Snake",
+        "extension": "jar",
+        "commands": {
+            "prepare": "base64 ~sourcefile~ -w 0 > submit.in",
+            "submit": "curl -u admin:weshouldchangethis -X PUT --data-urlencode source@submit.in \"http://lamp.ms.wits.ac.za:8080/SnakeDBService/agents/0/~firstname~_~lastname~/~userid~/1/\" >out.txt 2>err.txt",
+	    "run": "echo 'true'"
+        }
+    },
+
+
+"16": {
+        "name": "SQL",
+        "extension": "sql",
+	
+	
+	
+
+	 "compile" :{
+            "compile": "mysql -u root -pstudent  <<- 'EOF' create database ~userid~_~firstname~_~lastname~ EOF"
+        },
+        
+        
+        "compile" :{
+            "compile": "mysql -u root -pstudent ~userid~_~firstname~_~lastname~  < ~input_noex~.txt"
+        },
+        
+        
+        "compile" :{
+            "compile": "mysql -u root -pstudent  ~userid~_~firstname~_~lastname~ < ~sourcefile~  >out1.txt"
+        },
+        
+        
+        "compile" :{
+            "compile": "mysql -u root -pstudent -e 'show tables' ~userid~_~firstname~_~lastname~ >out2.txt"
+        },
+        
+        
+        "compile_tests" : {
+            "compile" : "outresults.txt"
+        },
+        "commands": {
+            "run": "mysql -u root -pstudent ~userid~_~firstname~_~lastname~  ~input_noex~.txt"
+       }
+
+
+
+    }
+    
+    
+}
