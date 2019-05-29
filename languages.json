@@ -191,7 +191,7 @@
 	
 
 	 "compile" :{
-            "compile": "mysql -u root -pstudent  <<- 'EOF' create database ~userid~_~firstname~_~lastname~ EOF"
+            "compile": "mysql -u root -pstudent -e 'create database ~userid~_~firstname~_~lastname~'"
         },
         
         
