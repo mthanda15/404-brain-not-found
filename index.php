@@ -2,7 +2,7 @@
 // Show errors/warnings
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
-    //jav
+    //java
 // var_dump($_FILES);
 if (count($_FILES) != 0) {
 
