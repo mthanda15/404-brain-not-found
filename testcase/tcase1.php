@@ -1,4 +1,4 @@
-function case(){
+function case($p,$z){
       if($p<$z){
         return $z;
       }
