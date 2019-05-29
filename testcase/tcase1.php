@@ -1,5 +1,5 @@
 <?php
-function case($p,$z){
+function nazo($p,$z){
       if($p<$z){
         return $z;
       }
