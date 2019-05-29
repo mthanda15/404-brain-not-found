@@ -2,7 +2,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 use PHPUnit\DbUnit\TestCaseTrait;
-class indexTest extends TestCase{
+class tcase1Test extends TestCase{
   
  public function test_case(){
    require_once('/home/travis/build/404-brain-not-found/testcase/tcase1.php');
