@@ -196,6 +196,7 @@
             "runinputfileymlunseen": "mysql -u root -pstudent ~userid~_~firstname~_~lastname~  < ini1.txt"
 	    "runinputfileymlseen": "mysql -u root -pstudent ~userid~_~firstname~  < ini2.txt"	
 	    "sourceunseen": "mysql -u root -pstudent  ~userid~_~firstname~_~lastname~ < ~sourcefile~"
+	    "sourceseen": "mysql -u root -pstudent  ~userid~_~firstname~ < ~sourcefile~"	 
 	    	 
         },
         
