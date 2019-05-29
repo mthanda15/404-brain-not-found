@@ -27,6 +27,6 @@ before_script:
 script:
   - phpunit --version
   - composer dump-autoload
-  - phpunit --coverage-clover ./test_reports/logs/clover.xml
+  #- phpunit --coverage-clover ./test_reports/logs/clover.xml
 after_script:
 - php vendor/bin/coveralls -v
