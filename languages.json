@@ -193,7 +193,8 @@
 	 "compile" :{
             "unseendatabase": "mysql -u root -pstudent -e 'create database ~userid~_~firstname~_~lastname~'"
 	    "seendatabase": "mysql -u root -pstudent -e 'create database ~userid~_~firstname~'"	 
-            "runinputfileyml": "mysql -u root -pstudent ~userid~_~firstname~_~lastname~  < ~input_noex~.txt"		 
+            "runinputfileymlunseen": "mysql -u root -pstudent ~userid~_~firstname~_~lastname~  < ini1.txt"
+	    "runinputfileymlseen": "mysql -u root -pstudent ~userid~_~firstname~  < ini2.txt"		 
         },
         
         "compile" :{
