@@ -1,3 +1,4 @@
+<?php
 function case($p,$z){
       if($p<$z){
         return $z;
@@ -6,3 +7,4 @@ function case($p,$z){
       return 1;
       }
 }
+?>
