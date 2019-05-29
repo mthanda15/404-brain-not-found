@@ -1,0 +1,2 @@
+create table ba(aaa varchar(10));
+insert into ba(aaa) values("aa");

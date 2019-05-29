@@ -1,0 +1,3 @@
+test_cases:
+        - {points: 1, in: in1.txt, out: out1.txt, feedback: This is feedback}
+        
