@@ -196,11 +196,12 @@
             "runinputfileymlunseen": "mysql -u root -pstudent ~userid~_~firstname~_~lastname~  < ini1.txt"
 	    "runinputfileymlseen": "mysql -u root -pstudent ~userid~_~firstname~  < ini2.txt"	
 	    "sourceunseen": "mysql -u root -pstudent  ~userid~_~firstname~_~lastname~ < ~sourcefile~"
-	    "sourceseen": "mysql -u root -pstudent  ~userid~_~firstname~ < ~sourcefile~"	 
+	    "sourceseen": "mysql -u root -pstudent  ~userid~_~firstname~ < ~sourcefile~"
+            "loopingtables":"mysql -u root -pstudent -e 'show tables' ~userid~_~firstname~_~lastname~ >out2.txt"		 
 	    	 
         }, 
         "compile" :{
-            "compile": "mysql -u root -pstudent -e 'show tables' ~userid~_~firstname~_~lastname~ >out2.txt"
+            "compile": 
         },
         
         
