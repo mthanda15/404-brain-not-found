@@ -5,7 +5,7 @@
         "commands": {
             "run": "java -Djava.security.manager -jar ~sourcefile~"
         }
-    },,
+    },
     "2": {
         "name": "JavaZip",
         "extension": "zip",
