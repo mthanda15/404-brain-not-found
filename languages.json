@@ -199,12 +199,7 @@
 	    "sourceseen": "mysql -u root -pstudent  ~userid~_~firstname~ < ~sourcefile~"
             "loopingtables":"mysql -u root -pstudent -e 'show tables' ~userid~_~firstname~_~lastname~ >out2.txt"		 
 	    	 
-        }, 
-        "compile" :{
-            "compile": 
-        },
-        
-        
+        },  
         "compile_tests" : {
             "compile" : "outresults.txt"
         },
