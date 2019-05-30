@@ -201,7 +201,7 @@
 	    	 
         },  
         "compile_tests" : {
-            "compile" : "outresults.txt"
+            "compile" : "WItsTestClass"
         },
         "commands": {
             "run": "mysql -u root -pstudent ~userid~_~firstname~_~lastname~  ~sourcefile~"
